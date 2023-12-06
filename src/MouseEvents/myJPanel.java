@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class myJPanel extends JPanel {
+    JCheckBox  cb;
     public Color randomColor(){
         int red= (int) (Math.random()*256);
         int green= (int) (Math.random()*256);
@@ -14,6 +15,9 @@ public class myJPanel extends JPanel {
     }
 
 public myJPanel(){
+        setLayout(new FlowLayout());
+        cb= new JCheckBox("Lock");
+        add(cb);
         setBackground(randomColor());
         addMouseListener(new MouseListener() {
             @Override
@@ -51,7 +55,9 @@ jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setSize(300,300);
         jf.setVisible(true);
         for(int i=0;i<25;i++){
-            pane.add(new myJPanel());
+            myJPanel mjp= new myJPanel();
+            MyMouseAdaptor mma= new MyMouseAdaptor(mjp);
+            pane.add(mjp);
         }
 
 
